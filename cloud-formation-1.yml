@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  InstanceType:
+    Type: "String"
+    Default: "t2.micro"
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.large
+
+Mappings:
+  AWSInstanceType2Arch:
+    t2.micro:
+      Arch: "HVM64"
+  AWSRegionArch2AMI:
+    us-east-1:
+      HVM64: "ami-032930428bf1abbff"
+      HVMG2: "ami-0aeb704d503081ea6"
+
+Resources:
+  EC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: !FindInMap [ AWSRegionArch2AMI, !Ref "AWS::Region", !FindInMap [ AWSInstanceType2Arch, !Ref "InstanceType", "Arch" ] ]
+      InstanceType: !Ref "InstanceType"
+
+Outputs:
+  InstanceId:
+    Description: "InstanceId of the newly created EC2 instance"
+    Value:
+      Ref: "EC2Instance"
