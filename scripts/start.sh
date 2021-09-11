@@ -2,3 +2,5 @@
 
 sudo killall java
 sudo nohup java -jar -Dserver.port=80 /home/ec2-user/*.jar &
+
+exit 0
