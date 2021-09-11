@@ -17,5 +17,6 @@ phases:
 artifacts:
   files:
     - target/resources-demo-0.0.1-SNAPSHOT.jar
+    - scripts
     - appspec.yml
   discard-paths: yes
