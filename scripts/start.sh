@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-cd /home/ec2-user/
+sudo killall java
 sudo java -jar -Dserver.port=80 *.jar &
